@@ -1,0 +1,264 @@
+﻿  CustomIocp.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(103,1): warning C4005: 'AF_IPX': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(457): message : 'AF_IPX'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(147,1): warning C4005: 'AF_MAX': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(476): message : 'AF_MAX'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(185,1): warning C4005: 'SO_DONTLINGER': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(399): message : 'SO_DONTLINGER'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(235,25): error C2011: 'sockaddr': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1007): message : 'sockaddr' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(437,5): error C2143: 구문 오류: '}'이(가) '상수' 앞에 없습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(437,27): error C2059: 구문 오류: '상수'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(491,1): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(491,10): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(491,20): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(572,1): warning C4005: 'IN_CLASSA': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(284): message : 'IN_CLASSA'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(578,1): warning C4005: 'IN_CLASSB': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(290): message : 'IN_CLASSB'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(584,1): warning C4005: 'IN_CLASSC': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(296): message : 'IN_CLASSC'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(595,1): warning C4005: 'INADDR_ANY': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(301): message : 'INADDR_ANY'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(597,1): warning C4005: 'INADDR_BROADCAST': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(303): message : 'INADDR_BROADCAST'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\ws2def.h(633,28): error C2011: 'sockaddr_in': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1011): message : 'sockaddr_in' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(136,23): error C2011: 'fd_set': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1019): message : 'fd_set' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(156,1): warning C4005: 'FD_CLR': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(94): message : 'FD_CLR'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(171,1): warning C4005: 'FD_SET': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(99): message : 'FD_SET'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(180,16): error C2011: 'timeval': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1035): message : 'timeval' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(236,17): error C2011: 'hostent': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1023): message : 'hostent' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(249,16): error C2011: 'netent': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(177): message : 'netent' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(256,17): error C2011: 'servent': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1027): message : 'servent' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(268,18): error C2011: 'protoent': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1031): message : 'protoent' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(364,24): error C2011: 'WSAData': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(319): message : 'WSAData' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(462,18): error C2011: 'sockproto': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(491): message : 'sockproto' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(504,16): error C2011: 'linger': 'struct' 형식 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(1015): message : 'linger' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(517,1): warning C4005: 'SOMAXCONN': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(541): message : 'SOMAXCONN'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(552,1): warning C4005: 'FD_READ': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(559): message : 'FD_READ'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(555,1): warning C4005: 'FD_WRITE': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(560): message : 'FD_WRITE'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(558,1): warning C4005: 'FD_OOB': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(561): message : 'FD_OOB'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(561,1): warning C4005: 'FD_ACCEPT': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(562): message : 'FD_ACCEPT'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(564,1): warning C4005: 'FD_CONNECT': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(563): message : 'FD_CONNECT'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(567,1): warning C4005: 'FD_CLOSE': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(564): message : 'FD_CLOSE'의 이전 정의를 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1625,1): error C2375: 'accept': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(739): message : 'accept' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1647,1): error C2375: 'bind': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(744): message : 'bind' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1668,1): error C2375: 'closesocket': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(749): message : 'closesocket' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1685,1): error C2375: 'connect': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(751): message : 'connect' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1706,1): error C2375: 'ioctlsocket': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(756): message : 'ioctlsocket' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1729,1): error C2375: 'getpeername': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(761): message : 'getpeername' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1750,1): error C2375: 'getsockname': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(766): message : 'getsockname' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1771,1): error C2375: 'getsockopt': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(771): message : 'getsockopt' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1796,1): error C2375: 'htonl': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(778): message : 'htonl' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1813,1): error C2375: 'htons': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(780): message : 'htons' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1831,1): error C2375: 'inet_addr': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(782): message : 'inet_addr' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1849,1): error C2375: 'inet_ntoa': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(784): message : 'inet_ntoa' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1949,1): error C2375: 'listen': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(786): message : 'listen' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1968,1): error C2375: 'ntohl': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(790): message : 'ntohl' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(1985,1): error C2375: 'ntohs': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(792): message : 'ntohs' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2002,1): error C2375: 'recv': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(794): message : 'recv' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2025,1): error C2375: 'recvfrom': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(800): message : 'recvfrom' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2052,1): error C2375: 'select': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(808): message : 'select' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2077,1): error C2375: 'send': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(815): message : 'send' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2100,1): error C2375: 'sendto': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(821): message : 'sendto' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2127,1): error C2375: 'setsockopt': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(829): message : 'setsockopt' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2152,1): error C2375: 'shutdown': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(836): message : 'shutdown' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2172,1): error C2375: 'socket': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(840): message : 'socket' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2197,1): error C2375: 'gethostbyaddr': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(847): message : 'gethostbyaddr' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2219,1): error C2375: 'gethostbyname': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(852): message : 'gethostbyname' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2236,1): error C2375: 'gethostname': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(854): message : 'gethostname' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2276,1): error C2375: 'getservbyport': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(858): message : 'getservbyport' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2295,1): error C2375: 'getservbyname': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(862): message : 'getservbyname' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2314,1): error C2375: 'getprotobynumber': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(866): message : 'getprotobynumber' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2331,1): error C2375: 'getprotobyname': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(868): message : 'getprotobyname' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2351,1): error C2375: 'WSAStartup': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(872): message : 'WSAStartup' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2371,1): error C2375: 'WSACleanup': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(876): message : 'WSACleanup' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2388,1): error C2375: 'WSASetLastError': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(878): message : 'WSASetLastError' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2405,1): error C2375: 'WSAGetLastError': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(880): message : 'WSAGetLastError' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2426,1): error C2375: 'WSAIsBlocking': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(882): message : 'WSAIsBlocking' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2444,1): error C2375: 'WSAUnhookBlockingHook': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(884): message : 'WSAUnhookBlockingHook' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2462,1): error C2375: 'WSASetBlockingHook': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(886): message : 'WSASetBlockingHook' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2480,1): error C2375: 'WSACancelBlockingCall': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(888): message : 'WSACancelBlockingCall' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2498,1): error C2375: 'WSAAsyncGetServByName': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(890): message : 'WSAAsyncGetServByName' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2526,1): error C2375: 'WSAAsyncGetServByPort': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(898): message : 'WSAAsyncGetServByPort' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2554,1): error C2375: 'WSAAsyncGetProtoByName': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(906): message : 'WSAAsyncGetProtoByName' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2580,1): error C2375: 'WSAAsyncGetProtoByNumber': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(913): message : 'WSAAsyncGetProtoByNumber' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2606,1): error C2375: 'WSAAsyncGetHostByName': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(920): message : 'WSAAsyncGetHostByName' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2632,1): error C2375: 'WSAAsyncGetHostByAddr': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(927): message : 'WSAAsyncGetHostByAddr' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2662,1): error C2375: 'WSACancelAsyncRequest': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(936): message : 'WSACancelAsyncRequest' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(2680,1): error C2375: 'WSAAsyncSelect': 재정의. 링크가 다릅니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\winsock.h(938): message : 'WSAAsyncSelect' 선언을 참조하십시오.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(4206,1): error C2059: 구문 오류: '}'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(4206,1): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.h(6,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.h(6,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(3,23): error C2653: 'CustomIocp': 클래스 또는 네임스페이스 이름이 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(4,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(5,1): warning C4508: 'CustomIocp': 함수는 값을 반환해야 하므로 'void' 반환 형식으로 간주됩니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(7,24): error C2653: 'CustomIocp': 클래스 또는 네임스페이스 이름이 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(7,24): error C2523: '<알 수 없음>::~CustomIocp': 소멸자 태그가 일치하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(8,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(8,1): error C2084: 'int CustomIocp(void)' 함수에 이미 본문이 있습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(3): message : 'CustomIocp'의 이전 정의를 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(11,23): error C2653: 'CustomIocp': 클래스 또는 네임스페이스 이름이 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(13,2): error C2065: 'h_cp': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(17,21): error C2079: 'addr_in'은(는) 정의되지 않은 struct 'sockaddr_in'을(를) 사용합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(19,27): error C2065: 'port': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(19,21): error C2065: 'htons': 선언되지 않은 식별자입니다.
+  NetSession.cpp
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\CustomIocp.cpp(22,2): error C2065: 'bind': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,14): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(46): message : 컴파일되는 클래스 템플릿 인스턴스화 'MemoryPool<T,ALLOC_BLOCK>'에 대한 참조를 확인하세요.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,1): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(11,1): error C3646: 'AllocBlock': 알 수 없는 재정의 지정자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(11,1): error C2059: 구문 오류: ')'
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(12,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26,13): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(27,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,14): error C2143: 구문 오류: ';'이(가) 'delete' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2086: 'int MemoryPool<T,ALLOC_BLOCK>::VOID': 재정의
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26): message : 'MemoryPool<T,ALLOC_BLOCK>::VOID' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2061: 구문 오류: 식별자 'VOID'
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2802: 정적 멤버 'operator delete'에 정식 매개 변수가 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2333: 'MemoryPool<T,ALLOC_BLOCK>::operator delete': 함수 선언에 오류가 있습니다. 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,20): error C2065: 'T': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,23): error C2065: 'ALLOC_BLOCK': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,9): error C2923: 'MemoryPool': 'T'은(는) 'T' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2975: 'ALLOC_BLOCK': 'MemoryPool'의 템플릿 인수가 잘못되었습니다. 컴파일 타임 상수 식이 필요합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(5): message : 'ALLOC_BLOCK' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49): error C2039: 'free_pointer_': 'MemoryPool'의 멤버가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(7): message : 'MemoryPool' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,51): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,51): error C2059: 구문 오류: '='
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2086: 'int MemoryPool<Session,1000>::VOID': 재정의
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26): message : 'MemoryPool<Session,1000>::VOID' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2333: 'MemoryPool<Session,1000>::operator delete': 함수 선언에 오류가 있습니다. 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\NetSession.cpp(15,5): error C2664: 'int WSARecv(SOCKET,LPWSABUF,DWORD,LPDWORD,LPDWORD,LPWSAOVERLAPPED,LPWSAOVERLAPPED_COMPLETION_ROUTINE)': 인수 2을(를) 'WSABUF'에서 'LPWSABUF'(으)로 변환할 수 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\NetSession.cpp(15,22): message : 이 변환을 수행할 수 있는 사용 가능한 사용자 정의 변환 연산자가 없거나 연산자를 호출할 수 없습니다.
+  ServerTest.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\WinSock2.h(3187,1): message : 'WSARecv' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,14): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(46): message : 컴파일되는 클래스 템플릿 인스턴스화 'MemoryPool<T,ALLOC_BLOCK>'에 대한 참조를 확인하세요.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(9,1): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(11,1): error C3646: 'AllocBlock': 알 수 없는 재정의 지정자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(11,1): error C2059: 구문 오류: ')'
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(12,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26,13): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(27,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,14): error C2143: 구문 오류: ';'이(가) 'delete' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2086: 'int MemoryPool<T,ALLOC_BLOCK>::VOID': 재정의
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26): message : 'MemoryPool<T,ALLOC_BLOCK>::VOID' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2061: 구문 오류: 식별자 'VOID'
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2802: 정적 멤버 'operator delete'에 정식 매개 변수가 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2333: 'MemoryPool<T,ALLOC_BLOCK>::operator delete': 함수 선언에 오류가 있습니다. 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,20): error C2065: 'T': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,23): error C2065: 'ALLOC_BLOCK': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,9): error C2923: 'MemoryPool': 'T'은(는) 'T' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,7): error C2975: 'ALLOC_BLOCK': 'MemoryPool'의 템플릿 인수가 잘못되었습니다. 컴파일 타임 상수 식이 필요합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(5): message : 'ALLOC_BLOCK' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49): error C2039: 'free_pointer_': 'MemoryPool'의 멤버가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(7): message : 'MemoryPool' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,51): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(49,51): error C2059: 구문 오류: '='
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(41,1): error C2086: 'int MemoryPool<Session,1000>::VOID': 재정의
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(26): message : 'MemoryPool<Session,1000>::VOID' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\MemoryPool.h(42,1): error C2333: 'MemoryPool<Session,1000>::operator delete': 함수 선언에 오류가 있습니다. 함수 본문을 건너뜁니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(18,56): error C2561: 'main': 함수는 값을 반환해야 합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(14): message : 'main' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(27,81): error C2561: 'main': 함수는 값을 반환해야 합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(14): message : 'main' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(36,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(38,43): error C2039: 'ThreadCallBack': '`global namespace''의 멤버가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(38,57): error C2065: 'ThreadCallBack': 선언되지 않은 식별자입니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(38,59): error C2355: 'this': 비정적 멤버 함수 또는 비정적 데이터 멤버 이니셜라이저 안에서만 참조할 수 있습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(60,10): error C2561: 'ThreadCallBack': 함수는 값을 반환해야 합니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(47): message : 'ThreadCallBack' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(70,36): warning C4291: 'void *operator new(size_t)': 일치하는 operator delete가 없습니다. 초기화할 때 예외가 Throw되지 않으면 메모리가 확보되지 않습니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\predefined C++ types (compiler internal)(33): message : 'operator new' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(71,35): error C2039: 'info': 'Session'의 멤버가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\NetSession.h(23): message : 'Session' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(71,4): error C2660: 'AcceptEx': 함수는 7개의 인수를 사용하지 않습니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MSWSock.h(179,1): message : 'AcceptEx' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(79,59): error C2039: 'info': 'Session'의 멤버가 아닙니다.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\NetSession.h(23): message : 'Session' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(82,19): error C2573: 'Session': 이 형식의 개체에 대한 포인터를 삭제할 수 없습니다. 해당 클래스에 'operator delete'에 대한 비배치 오버로드가 없습니다. ::delete를 사용하거나, 클래스에 'operator delete(void*)'를 추가하세요.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\NetSession.h(23): message : 'Session' 선언을 참조하십시오.
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(105,2): error C2065: 'wsasend': 선언되지 않은 식별자입니다.
+  코드를 생성하고 있습니다...
+C:\Users\kwon\Desktop\Project\ServerTest\ServerTest\ServerTest.cpp(106,1): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
