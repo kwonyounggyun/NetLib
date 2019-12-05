@@ -15,6 +15,9 @@ private:
 	VOID ThreadCallback(VOID* param);
 
 public:
+	Iocp();
+	virtual ~Iocp();
+
 	BOOL Begin();
 	BOOL End();
 };

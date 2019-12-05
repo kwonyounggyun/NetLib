@@ -5,7 +5,7 @@
 #define MAX_BUF 4096
 #endif
 
-class Session : public MemoryPool<Session, 1000>
+class Session : public CMemoryPool<Session, 1000>
 {
 private:
 	SOCKET* socket_;
@@ -16,6 +16,8 @@ public:
 	Session(SOCKET* socket);
 	~Session();
 
+	BOOL InitializeIOCP();
+	BOOL ReleaseIOCP();
 	BOOL Send();
 	BOOL Recv();
 };

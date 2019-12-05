@@ -11,7 +11,7 @@
 	CopyMemory(value, buf, sizeof(TYPE));												\
 	size += sizeof(TYPE);}
 
-class NetMessage:public MemoryPool<NetMessage, 1000>
+class NetMessage:public CMemoryPool<NetMessage, 1000>
 {
 private:
 	CHAR buf[MAX_BUF];

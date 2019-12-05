@@ -24,6 +24,14 @@ VOID Iocp::ThreadCallback(VOID* param)
 	return VOID();
 }
 
+Iocp::Iocp():h_cp_(nullptr), h_start_event_(nullptr), h_end_event_(nullptr)
+{
+}
+
+Iocp::~Iocp()
+{
+}
+
 BOOL Iocp::Begin()
 {
 	if (h_cp_ != NULL)

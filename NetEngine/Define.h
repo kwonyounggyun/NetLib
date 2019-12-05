@@ -3,11 +3,11 @@
 
 #define MAX_BUF 4096
 
-typedef struct OVERLAPPED_EX
+typedef struct _OVERLAPPED_EX
 {
 	OVERLAPPED overlap;
 	INT data;
-};
+}OVERLAPPED_EX;
 
 enum MSG_TYPE : BYTE
 {

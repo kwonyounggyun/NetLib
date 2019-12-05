@@ -1,0 +1,9 @@
+﻿  stdafx.cpp
+  IniFile.cpp
+  MiniDump.cpp
+  Random.cpp
+  Registry.cpp
+  Crypt.cpp
+  Service.cpp
+  Stream.cpp
+  CoreLib.vcxproj -> C:\Users\kyg93\Desktop\Project\NetLib\ServerTest\Debug\CoreLib.lib
