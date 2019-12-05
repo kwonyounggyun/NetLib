@@ -86,3 +86,23 @@ BOOL Iocp::End()
 
 	return TRUE;
 }
+
+BOOL Iocp::ServerStart(DWORD port)
+{
+	SOCKET server = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, NULL, WSA_FLAG_OVERLAPPED);
+
+	SOCKADDR_IN addr;
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons(port);
+	addr.sin_addr.S_un.S_addr = INADDR_ANY;
+
+	if (bind(server, (SOCKADDR*)& addr, sizeof(addr)) < 0)
+		return FALSE;
+
+	if (listen(server, 10) < 0)
+		return FALSE;
+
+	acceptex
+
+	return 0;
+}

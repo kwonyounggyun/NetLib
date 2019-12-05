@@ -13,28 +13,38 @@
 
 class NetMessage:public CMemoryPool<NetMessage, 1000>
 {
+	friend class Session;
 private:
 	CHAR buf[MAX_BUF];
-	INT32 size;
+	DWORD size_;
 
 	NetMessage();
 public:
-	NetMessage(MSG_TYPE value):size(0)
+	VOID operator ()(BYTE* data, DWORD size)
+	{
+		if (size > (MAX_BUF- size_))
+			return;
+
+		CopyMemory(buf, data, size);
+		size_ += size;
+	}
+
+	NetMessage(MSG_TYPE value):size_(0)
 	{
 		ZeroMemory(buf, MAX_BUF);
 		CopyMemory(buf, &value, sizeof(value));
-		size += sizeof(value);
+		size_ += sizeof(value);
 	}
 
 	VOID operator <<(DWORD value)
 	{
-		CopyMemory(buf+size, &value, sizeof(value));
-		size += sizeof(value);
+		CopyMemory(buf+ size_, &value, sizeof(value));
+		size_ += sizeof(value);
 	}
 
 	VOID operator >>(DWORD& value)
 	{
-		CopyMemory(&value, buf + size, sizeof(value));
-		size += sizeof(value);
+		CopyMemory(&value, buf + size_, sizeof(value));
+		size_ += sizeof(value);
 	}
 };

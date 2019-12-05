@@ -20,4 +20,5 @@ public:
 
 	BOOL Begin();
 	BOOL End();
+	BOOL ServerStart(DWORD port);
 };
