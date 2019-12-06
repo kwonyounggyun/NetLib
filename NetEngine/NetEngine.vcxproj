@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="Iocp.cpp" />
     <ClCompile Include="NetEngine.cpp" />
+    <ClCompile Include="NetMessage.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

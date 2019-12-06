@@ -11,6 +11,7 @@
 	CopyMemory(value, buf, sizeof(TYPE));												\
 	size += sizeof(TYPE);}
 
+
 class NetMessage:public CMemoryPool<NetMessage, 1000>
 {
 	friend class Session;
@@ -18,8 +19,8 @@ private:
 	CHAR buf[MAX_BUF];
 	DWORD size_;
 
-	NetMessage();
 public:
+
 	VOID operator ()(BYTE* data, DWORD size)
 	{
 		if (size > (MAX_BUF- size_))
@@ -29,6 +30,7 @@ public:
 		size_ += size;
 	}
 
+	NetMessage();
 	NetMessage(MSG_TYPE value):size_(0)
 	{
 		ZeroMemory(buf, MAX_BUF);

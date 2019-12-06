@@ -1,38 +1,66 @@
 #include "pch.h"
-#include "Iocp.h"
+#include "iocp.h"
 #include <iostream>
+#include "NetMessage.h"
+#include "Session.h"
 
 DWORD __stdcall ThreadCallback(VOID* param)
 {
-	Iocp* iocp = reinterpret_cast<Iocp*>(param);
+	IOCP* iocp = reinterpret_cast<IOCP*>(param);
 	SetEvent(iocp->h_start_event_);
 	iocp->ThreadCallback(iocp->h_cp_);
 
 	return 0;
 }
 
-VOID Iocp::ThreadCallback(VOID* param)
+VOID IOCP::ThreadCallback(VOID* param)
 {
-	int count = 5;
-	while (count > 0)
+	BOOL successed = FALSE;
+	DWORD number_of_byte_transfer = 0;
+	VOID* completionport = nullptr;
+	OVERLAPPED_EX* overlapped = nullptr;
+
+	while (TRUE)
 	{
-		std::cout << "test" << GetCurrentThreadId() << std::endl;
-		Sleep(10000);
-		count--;
+		SetEvent(h_start_event_);
+
+		successed = GetQueuedCompletionStatus(h_cp_, &number_of_byte_transfer, (LPDWORD)&completionport, (LPOVERLAPPED*)&overlapped, INFINITE);
+		
+		if (!completionport)
+			return;
+
+		if (!successed || (successed && !number_of_byte_transfer))
+		{
+			if (overlapped->type == IO_TYPE::IO_ACCEPT);
+			else;
+
+			continue;
+		}
+
+		switch (overlapped->type)
+		{
+		case IO_TYPE::IO_READ:
+		{
+			
+		}
+			break;
+		case IO_TYPE::IO_WRITE:
+			break;
+		}
 	}
 
 	return VOID();
 }
 
-Iocp::Iocp():h_cp_(nullptr), h_start_event_(nullptr), h_end_event_(nullptr)
+IOCP::IOCP():h_cp_(nullptr), h_start_event_(nullptr), h_end_event_(nullptr)
 {
 }
 
-Iocp::~Iocp()
+IOCP::~IOCP()
 {
 }
 
-BOOL Iocp::Begin()
+BOOL IOCP::Begin()
 {
 	if (h_cp_ != NULL)
 		return FALSE;
@@ -45,7 +73,7 @@ BOOL Iocp::Begin()
 	INT thread_count = sys_info.dwNumberOfProcessors * 2;
 	vec_threads_.reserve(thread_count);
 
-	h_start_event_ = CreateEvent(NULL, FALSE, FALSE, NULL);
+	h_start_event_ = CreateEvent(NULL, FALSE, FALSE, NULL); //리셋안함
 	if (h_start_event_ == NULL)
 		return FALSE;
 
@@ -54,13 +82,12 @@ BOOL Iocp::Begin()
 		HANDLE Thread = CreateThread(NULL, 0, ::ThreadCallback, this, 0, 0);
 		vec_threads_.push_back(Thread);
 		WaitForSingleObject(h_start_event_, INFINITE);
-		Sleep(10);
 	}
 
 	return TRUE;
 }
 
-BOOL Iocp::End()
+BOOL IOCP::End()
 {
 	for (size_t i = 0; i < vec_threads_.size(); i++)
 	{
@@ -87,22 +114,35 @@ BOOL Iocp::End()
 	return TRUE;
 }
 
-BOOL Iocp::ServerStart(DWORD port)
+//check 이함수 실패하면 프로그램 종료를 해야하는건가?? h_cp_에 저장하는데 반환값이 널이되면 기존 핸들 잃어버리는거아닌가?
+BOOL IOCP::RegisterSocketToIOCP(SOCKET socket, DWORD completionkey)
 {
-	SOCKET server = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, NULL, WSA_FLAG_OVERLAPPED);
-
-	SOCKADDR_IN addr;
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(port);
-	addr.sin_addr.S_un.S_addr = INADDR_ANY;
-
-	if (bind(server, (SOCKADDR*)& addr, sizeof(addr)) < 0)
+	if (!socket || !completionkey)
 		return FALSE;
 
-	if (listen(server, 10) < 0)
+	h_cp_ = CreateIoCompletionPort((HANDLE)socket, h_cp_, completionkey, 0);
+
+	if (!h_cp_)
 		return FALSE;
 
-	acceptex
+	return TRUE;
+}
 
+BOOL IOCP::OnIoRead(VOID* object, DWORD number_of_byte_transpered)
+{
+	NetMessage* msg = new NetMessage();
+	Session* session = reinterpret_cast<Session*>(object);
+	BOOL successed = session->Read(*msg, number_of_byte_transpered);
+
+	if (!successed)
+		return FALSE;
+
+	
+
+	return TRUE;
+}
+
+BOOL IOCP::OnIoWrote(VOID* object, DWORD number_of_byte_transpered)
+{
 	return 0;
 }

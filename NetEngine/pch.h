@@ -11,8 +11,10 @@
 #include "framework.h"
 #include <WinSock2.h>
 #include <Windows.h>
+#include <MSWSock.h>
 #include "Define.h"
 
 #pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib,"mswsock.lib")
 
 #endif //PCH_H

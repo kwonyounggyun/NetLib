@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-class Iocp
+class IOCP
 {
 	friend DWORD __stdcall ThreadCallback(VOID* param);
 private:
@@ -15,10 +15,13 @@ private:
 	VOID ThreadCallback(VOID* param);
 
 public:
-	Iocp();
-	virtual ~Iocp();
+	IOCP();
+	virtual ~IOCP();
 
 	BOOL Begin();
 	BOOL End();
-	BOOL ServerStart(DWORD port);
+	BOOL RegisterSocketToIOCP(SOCKET socket, DWORD completionkey);
+
+	BOOL OnIoRead(VOID* object, DWORD number_of_byte_transpered);
+	BOOL OnIoWrote(VOID* object, DWORD number_of_byte_transpered);
 };
