@@ -1,17 +1,28 @@
 ﻿// unit_test_netEngine.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
-#include <iostream>
+#include <WinSock2.h>
 #include <Windows.h>
+#include <iostream>
 #include "Iocp.h"
+#include "Session.h"
+
+class TestIO : public IOCP
+{
+	virtual VOID Task(NetMessage* msg)
+	{
+		
+	}
+};
+
+class CustomSession : Session
+{
+
+};
 
 int main()
 {
-	Iocp io;
-
-	io.Begin();
-
-	io.End();
+	TestIO* t = new TestIO();
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

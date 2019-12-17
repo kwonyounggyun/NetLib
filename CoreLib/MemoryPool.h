@@ -1,14 +1,15 @@
 #pragma once
 #include "stdafx.h"
 #include "MultiThreadSync.h"
+#include <assert.h>
 
-template <class T, int ALLOC_BLOCK_SIZE = 50>
+template <typename T, int ALLOC_BLOCK_SIZE = 50>
 class CMemoryPool : public CMultiThreadSync<T>
 {
 public:
 	static VOID* operator new(size_t allocLength)
 	{
-		CThreadSync sync;
+		typename CMultiThreadSync<T>::CThreadSync sync;
 
 		//assert(sizeof(T) == allocLength);
 		assert(sizeof(T) >= sizeof(UCHAR*));
@@ -24,6 +25,8 @@ public:
 
 	static VOID operator delete(VOID* deletePointer)
 	{
+		typename CMultiThreadSync<T>::CThreadSync sync;
+
 		*reinterpret_cast<UCHAR**>(deletePointer) = mFreePointer;
 		mFreePointer = static_cast<UCHAR*>(deletePointer);
 	}

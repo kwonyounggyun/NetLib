@@ -3,50 +3,45 @@
 #include "Define.h"
 #include "MemoryPool.h"
 
-#define MAKE_IN_OUT_OPERATOR(TYPE)												\
-	VOID operator <<(TYPE* value) {														\
-	CopyMemory(buf+size, value, sizeof(TYPE));										\
-	size += sizeof(TYPE);}																		\
-	VOID operator >>(TYPE* value) {														\
-	CopyMemory(value, buf, sizeof(TYPE));												\
-	size += sizeof(TYPE);}
-
-
-class NetMessage:public CMemoryPool<NetMessage, 1000>
+//이것도 사용자가 자기 입맛에 맞게 작성하도록 인터페이스만 뚫어주자
+class NetMessage : public CMemoryPool<NetMessage, 1000>
 {
 	friend class Session;
-private:
-	CHAR buf[MAX_BUF];
-	DWORD size_;
 
 public:
+	const static DWORD HEADER_SIZE = sizeof(MSG_TYPE) + sizeof(DWORD);
+	const static DWORD MSG_BUF_SIZE = MAX_BUF - HEADER_SIZE;
 
-	VOID operator ()(BYTE* data, DWORD size)
+private:
+	BYTE header_[HEADER_SIZE];
+	BYTE data_[MSG_BUF_SIZE];
+	
+public:
+	//버퍼보다 클경우 잘못된 데이터로 판단하자
+	BOOL operator ()(BYTE* data, DWORD size)
 	{
-		if (size > (MAX_BUF- size_))
-			return;
+		if (size > (MSG_BUF_SIZE - size_))
+			return FALSE;
 
-		CopyMemory(buf, data, size);
+		CopyMemory(buf+size_, data, size);
 		size_ += size;
+
+		return TRUE;
 	}
 
-	NetMessage();
-	NetMessage(MSG_TYPE value):size_(0)
+	explicit NetMessage() :size_(0)
 	{
-		ZeroMemory(buf, MAX_BUF);
-		CopyMemory(buf, &value, sizeof(value));
-		size_ += sizeof(value);
+		ZeroMemory(buf, MSG_BUF_SIZE);
+	}
+	
+	NetMessage(MSG_TYPE type):type_(type), size_(0)
+	{
+		ZeroMemory(buf, MSG_BUF_SIZE);
 	}
 
-	VOID operator <<(DWORD value)
+	BOOL BufferClear()
 	{
-		CopyMemory(buf+ size_, &value, sizeof(value));
-		size_ += sizeof(value);
-	}
-
-	VOID operator >>(DWORD& value)
-	{
-		CopyMemory(&value, buf + size_, sizeof(value));
-		size_ += sizeof(value);
+		size_ = 0;
+		ZeroMemory(buf, MSG_BUF_SIZE);
 	}
 };

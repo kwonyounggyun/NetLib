@@ -17,12 +17,12 @@ public:
 private:
 	T mQueue[MAX_QUEUE_LENGTH];
 	DWORD mQueueHead;
-	DWORD mQeueTail;
+	DWORD mQueueTail;
 
 public:
 	BOOL Begin(VOID)
 	{
-		ZeroMemory(mQeue, sizeof(mQueue));
+		ZeroMemory(mQueue, sizeof(mQueue));
 		mQueueHead = mQueueTail = 0;
 
 		return TRUE;
@@ -44,19 +44,19 @@ public:
 
 	BOOL Pop(T& data)
 	{
-		if (mQueueHeaad == mQueueTail)
+		if (mQueueHead == mQueueTail)
 			return FALSE;
 
 		DWORD TempHead = (mQueueHead + 1) % MAX_QUEUE_LENGTH;
 
-		CopyMemory(&data, &mQeue[TempHead], sizeof(T));
+		CopyMemory(&data, &mQueue[TempHead], sizeof(T));
 		mQueueHead = TempHead;
 		return TRUE;
 	}
 
 	BOOL IsEmpty()
 	{
-		if (mQueueHead == mQeueTail) return TRUE;
+		if (mQueueHead == mQueueTail) return TRUE;
 		return FALSE;
 	}
 };

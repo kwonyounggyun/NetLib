@@ -28,6 +28,24 @@ private:
 	CRITICAL_SECTION mSync;
 };
 
+class Lock
+{
+private:
+	CriticalSection* cs;
+	explicit Lock():cs(nullptr) {};
+public:
+	Lock(CriticalSection* critical) :cs(critical)
+	{
+		cs->Enter();
+	}
+
+	~Lock()
+	{
+		cs->Leave();
+	}
+};
+
+//하나의 뮤텍스로 여러 객체가 접근할때 사용합니다.
 template<class T>
 class CMultiThreadSync
 {
