@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetEngine", "..\NetEngine\NetEngine.vcxproj", "{085C98C2-091B-4515-A23A-816AC8F2ABD2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{836AFC22-C253-4818-A302-7CE12D7DC932} = {836AFC22-C253-4818-A302-7CE12D7DC932}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unit_test_netEngine", "..\unit_test_netEngine\unit_test_netEngine.vcxproj", "{2E317C74-CB54-4A0C-899D-F1AFA9DCFAC3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{836AFC22-C253-4818-A302-7CE12D7DC932} = {836AFC22-C253-4818-A302-7CE12D7DC932}
+		{085C98C2-091B-4515-A23A-816AC8F2ABD2} = {085C98C2-091B-4515-A23A-816AC8F2ABD2}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreLib", "..\CoreLib\CoreLib.vcxproj", "{836AFC22-C253-4818-A302-7CE12D7DC932}"
 EndProject

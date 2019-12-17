@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SessionBaseServer.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Iocp.h" />
@@ -166,9 +167,9 @@
     <ClInclude Include="Session.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SessionBaseServer.cpp" />
     <ClCompile Include="Iocp.cpp" />
     <ClCompile Include="NetEngine.cpp" />
-    <ClCompile Include="NetMessage.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
