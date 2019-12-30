@@ -4,25 +4,18 @@
 #include <WinSock2.h>
 #include <Windows.h>
 #include <iostream>
-#include "Iocp.h"
-#include "Session.h"
+#include "NetMessage.h"
 
-class TestIO : public IOCP
+class A
 {
-	virtual VOID Task(NetMessage* msg)
-	{
-		
-	}
-};
-
-class CustomSession : Session
-{
+	friend class IOCP;
+public:
 
 };
 
 int main()
 {
-	TestIO* t = new TestIO();
+	NetMessage* msg = new NetMessage();
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

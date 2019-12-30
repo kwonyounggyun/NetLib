@@ -2,46 +2,83 @@
 #include "pch.h"
 #include "Define.h"
 #include "MemoryPool.h"
+#include <string>
 
-//이것도 사용자가 자기 입맛에 맞게 작성하도록 인터페이스만 뚫어주자
-class NetMessage : public CMemoryPool<NetMessage, 1000>
+class NetMessage:CMemoryPool<NetMessage, 1000>
 {
-	friend class Session;
-
 public:
-	const static DWORD HEADER_SIZE = sizeof(MSG_TYPE) + sizeof(DWORD);
-	const static DWORD MSG_BUF_SIZE = MAX_BUF - HEADER_SIZE;
-
+	
+	static const DWORD HEADER = sizeof(USHORT);
+	static const DWORD MSG_BUF_SIZE = 4096 - HEADER;
 private:
-	BYTE header_[HEADER_SIZE];
-	BYTE data_[MSG_BUF_SIZE];
+	USHORT m_size;
+	BYTE m_buf[MSG_BUF_SIZE];
+	USHORT m_readPos;
+	USHORT m_writePos;
+
+	VOID WriteByte(VOID* data, DWORD len)
+	{
+		if ((MSG_BUF_SIZE - m_writePos) < len)
+			return;
+
+		CopyMemory(m_buf + m_writePos, data, len);
+		m_writePos += len;
+	}
+
+	VOID ReadByte(VOID* data, DWORD len)
+	{
+		if ((m_size - m_readPos) < len)
+			return;
+
+		CopyMemory(data, m_buf + m_readPos, len);
+		m_readPos += len;
+	}
 	
 public:
-	//버퍼보다 클경우 잘못된 데이터로 판단하자
-	BOOL operator ()(BYTE* data, DWORD size)
+	explicit NetMessage() :m_size(0), m_readPos(0), m_writePos(0)
 	{
-		if (size > (MSG_BUF_SIZE - size_))
-			return FALSE;
-
-		CopyMemory(buf+size_, data, size);
-		size_ += size;
-
-		return TRUE;
+		ZeroMemory(m_buf, MSG_BUF_SIZE);
 	}
 
-	explicit NetMessage() :size_(0)
+	NetMessage(VOID* buf, USHORT size) :m_size(size)
 	{
-		ZeroMemory(buf, MSG_BUF_SIZE);
-	}
-	
-	NetMessage(MSG_TYPE type):type_(type), size_(0)
-	{
-		ZeroMemory(buf, MSG_BUF_SIZE);
+		WriteByte(buf, size);
 	}
 
 	BOOL BufferClear()
 	{
-		size_ = 0;
-		ZeroMemory(buf, MSG_BUF_SIZE);
+		m_size = 0;
+		m_readPos = 0;
+		m_writePos = 0;
+		ZeroMemory(m_buf, MSG_BUF_SIZE);
+	}
+
+	template<typename T>
+	NetMessage& operator >>(T& arg)
+	{
+		ReadByte(&arg, sizeof(T));
+	}
+
+	template<>
+	NetMessage& operator >>(std::wstring& arg)
+	{
+		size_t size;
+		ReadByte(&size, sizeof(size_t));
+		arg.resize(size);
+		ReadByte((VOID*)arg.c_str(), size);
+	}
+
+	template<typename T>
+	NetMessage& operator <<(const T& arg)
+	{
+		WriteByte(&arg, sizeof(T));
+	}
+
+	template<>
+	NetMessage& operator <<(const std::wstring& arg)
+	{
+		size_t len = arg.length();
+		WriteByte(&len, sizeof(size_t));
+		WriteByte((VOID*)arg.c_str(), len);
 	}
 };

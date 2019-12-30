@@ -1,9 +1,0 @@
-﻿  stdafx.cpp
-  IniFile.cpp
-  MiniDump.cpp
-  Registry.cpp
-  Crypt.cpp
-  Service.cpp
-  Stream.cpp
-  코드를 생성하고 있습니다...
-  CoreLib.vcxproj -> H:\Lib\CoreLib\x64\Debug\CoreLib.lib

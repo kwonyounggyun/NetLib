@@ -2,69 +2,79 @@
 #include "iocp.h"
 #include <iostream>
 #include "NetMessage.h"
+#include "Session.h"
+#include "TCPSession.h"
+#include "UDPSession.h"
 
 DWORD __stdcall ThreadCallback(VOID* param)
 {
 	IOCP* iocp = reinterpret_cast<IOCP*>(param);
 	SetEvent(iocp->h_start_event_);
-	iocp->IOCallback();
+	iocp->RunThread();
 
 	return 0;
 }
 
-//VOID IOCP::IOCallback()
-//{
-//	BOOL successed = FALSE;
-//	DWORD number_of_byte_transfer = 0;
-//	VOID* completionport = nullptr;
-//	OVERLAPPED_EX* overlapped = nullptr;
-//
-//	while (TRUE)
-//	{
-//		SetEvent(h_start_event_);
-//
-//		successed = GetQueuedCompletionStatus(h_cp_, &number_of_byte_transfer, (LPDWORD)&completionport, (LPOVERLAPPED*)&overlapped, INFINITE);
-//		
-//		if (!completionport)
-//			return;
-//
-//		Session* session = reinterpret_cast<Session*>(overlapped->object);
-//
-//
-//		if (!successed || (successed && !number_of_byte_transfer))
-//		{
-//			if (overlapped->type == IO_TYPE::IO_ACCEPT)
-//			{
-//				session->InitializeIOCP();
-//			}
-//			else       //에러이거나 오류로 판단해서 연결끊고 다시 대기 상태로 만든다.
-//			{
-//				session->End();
-//				wait_sessions->Push(session);
-//			}
-//
-//			continue;
-//		}
-//
-//		switch (overlapped->type)
-//		{
-//		case IO_TYPE::IO_READ:
-//		{
-//			//패킷이 두개가 붙어오는 경우도 잇다. 그래서 msg의 생성을 세션에서 하는 것이 맞는것같다.
-//			NetMessage* msg = new NetMessage();
-//			session->Read(*msg, number_of_byte_transfer);
-//			Task(msg);
-//
-//			delete msg;
-//		}
-//			break;
-//		case IO_TYPE::IO_WRITE:
-//			break;
-//		}
-//	}
-//
-//	return VOID();
-//}
+VOID IOCP::RunThread()
+{
+	DWORD transferred_bytes;
+	DWORD completion_key;
+	OVERLAPPED_EX* overlapped;
+	while (1)
+	{
+		BOOL result = GetQueuedCompletionStatus(h_cp_, &transferred_bytes, &completion_key, (LPOVERLAPPED*) &overlapped, INFINITE);
+
+		if (!result || (result && !transferred_bytes))
+		{
+			if (overlapped->type == IO_TYPE::IO_ACCEPT)
+				OnConnect();
+			else
+				OnDisconnect();
+
+			continue;
+		}
+
+		Session* session = reinterpret_cast<Session*>(overlapped->object);
+		switch (overlapped->type)
+		{
+		case IO_TYPE::IO_READ:
+			OnRead(session);
+			break;
+		case IO_TYPE::IO_WRITE:
+			OnWrite(session);
+			break;
+		default:
+			OnDisconnect();
+			break;
+		}
+	}
+
+	return VOID();
+}
+
+BOOL IOCP::OnConnect()
+{
+	return 0;
+}
+
+BOOL IOCP::OnDisconnect()
+{
+	return 0;
+}
+
+BOOL IOCP::OnWrite(Session* session)
+{
+	session->WirteComplete();
+
+	return 0;
+}
+
+BOOL IOCP::OnRead(Session* session)
+{
+	session->Read();
+
+	return 0;
+}
 
 IOCP::IOCP():h_cp_(nullptr), h_start_event_(nullptr), h_end_event_(nullptr)
 {
@@ -74,7 +84,7 @@ IOCP::~IOCP()
 {
 }
 
-BOOL IOCP::Begin(DWORD apply_thread_count = 0)
+BOOL IOCP::Begin(DWORD apply_thread_count)
 {
 	if (h_cp_ != NULL)
 		return FALSE;
@@ -133,7 +143,6 @@ BOOL IOCP::End()
 	return TRUE;
 }
 
-//check 이함수 실패하면 프로그램 종료를 해야하는건가?? h_cp_에 저장하는데 반환값이 널이되면 기존 핸들 잃어버리는거아닌가?
 BOOL IOCP::RegisterHandleToIOCP(HANDLE handle, DWORD completionkey)
 {
 	if (!socket || !completionkey)
@@ -146,28 +155,3 @@ BOOL IOCP::RegisterHandleToIOCP(HANDLE handle, DWORD completionkey)
 
 	return TRUE;
 }
-
-//BOOL IOCP::OnIoRead(VOID* object, DWORD number_of_byte_transpered)
-//{
-//	NetMessage* msg = new NetMessage();
-//	Session* session = reinterpret_cast<Session*>(object);
-//	BOOL successed = session->Read(*msg, number_of_byte_transpered);
-//
-//	if (!successed)
-//		return FALSE;
-//
-//	
-//
-//	return TRUE;
-//}
-//
-//BOOL IOCP::OnIoWrote(VOID* object)
-//{
-//	if (!object)
-//		return FALSE;
-//
-//	Session* session = reinterpret_cast<Session*>(object);
-//	session->WirteComplete();
-//
-//	return TRUE;
-//}

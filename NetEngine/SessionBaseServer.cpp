@@ -83,7 +83,7 @@ VOID SessionBaseServer::IOCallback()
 			break;
 		case IO_TYPE::IO_READ:
 		{
-			session->Read();
+			//session->Read();
 		}
 			break;
 		case IO_TYPE::IO_WRITE:
