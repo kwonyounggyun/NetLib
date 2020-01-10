@@ -1,21 +1,15 @@
 #pragma once
 #include "Session.h"
+#include <queue>
 
 class TCPSession : Session
 {
 private:
+	struct MsgBuffer
+	{
+		DWORD length;
+		BYTE buf[MAX_BUF];
+	};
 
-protected:
-
-public:
-
-private:
-	virtual BOOL Read(DWORD number_of_byte) override;
-	virtual BOOL WirteComplete() override;
-
-public:
-	BOOL Accept(SOCKET listen_sock);
-
-	// Session을(를) 통해 상속됨
-	virtual BOOL Write(NetMessage& msg, DWORD number_of_byte) override;
+	std::queue<MsgBuffer*> m_write_msg_queue;
 };

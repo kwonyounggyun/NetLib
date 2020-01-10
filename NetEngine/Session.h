@@ -3,54 +3,50 @@
 #include "NetMessage.h"
 #include "MultiThreadSync.h"
 #include "CircularQueue.h"
-#include "Iocp.h"
+#include "MultiThreadSync.h"
 
 #ifndef MAX_BUF
 #define MAX_BUF 4096
 #endif
 
-class IOCP;
-
 class Session
 {
 protected:
-	friend class IOCP;
+	CriticalSection m_critical;
 
-	CriticalSection cs;
-
-	DWORD id_;
-	SESSION_TYPE type_;
-
-	SOCKET socket_;
+	SOCKET m_socket;
 	WSABUF wsa_buf_;
-	CHAR buf_[MAX_BUF]; //받는 역할만 하는 버퍼
-	DWORD recv_byte_;
-	DWORD recv_flag_;
-
-	CCircularQueue<NetMessage*> msg_queue;
-
+	CHAR m_read_buf[MAX_BUF];
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
-	
-	static DWORD IDAllocate();
-	virtual BOOL Read(DWORD number_of_byte) = 0; 
-	virtual BOOL WirteComplete() = 0;
-public:
+
+protected:
 	Session();
-	Session(SESSION_TYPE type);
-	~Session();
+	virtual ~Session();
 
-	const SOCKET& Socket() 
-	{
-		return socket_;
-	}
-
-	BOOL InitializeIOCP();
-	
-	virtual BOOL Write(NetMessage& msg, DWORD number_of_byte) =  0; //메세지를 넘겨서 메세지 버퍼안의 내용을 전송하게하자
-
+	BOOL Begin();
 	BOOL End();
 
+	//TCP
+	BOOL InitializeIOCP();
+	BOOL TcpBind();
+	BOOL Listen(USHORT port, INT back_log);
+	BOOL Accept(SOCKET listen_socket);
+	BOOL Connect(LPSTR address, USHORT port);
+	BOOL Write(BYTE* data, DWORD data_length);
+	BOOL ReadForIOCP(BYTE* data, DWORD& data_length);
+
+	//UDP
+	BOOL InitailizeUDP();
+	BOOL InitailizeIOCPUDP();
+
+	virtual BOOL WirteComplete() = 0;
+	virtual BOOL Read(BYTE* data, DWORD data_length) = 0;
+	virtual BOOL Write(BYTE* data, DWORD data_length) = 0;
+
 	
-	DWORD ID() { return id_; }
+	const SOCKET& Socket()
+	{
+		return m_socket;
+	}
 };
 

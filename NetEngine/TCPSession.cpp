@@ -49,21 +49,11 @@ BOOL TCPSession::Read(DWORD number_of_byte)
 	return TRUE;
 }
 
-BOOL TCPSession::Write(NetMessage& msg, DWORD number_of_byte)
+BOOL TCPSession::Write(BYTE* packet, DWORD length)
 {
-	DWORD write_byte = 0;
-	DWORD write_flag = 0;
-
-	WSABUF wsa_tmp;
-
-	INT value = WSASend(socket_, &wsa_tmp, 1, &write_byte, write_flag, (OVERLAPPED*)&write_overlapped, NULL);
-
-	if (value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
-	{
-		return FALSE;
-	}
-
-	msg_queue.Push(&msg);
+	MsgBuffer* msg_buffer = new MsgBuffer();
+	
+	CopyMemory(&msg_buffer->buf, packet, length);
 
 	return TRUE;
 }

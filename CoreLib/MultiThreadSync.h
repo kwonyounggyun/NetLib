@@ -28,18 +28,17 @@ private:
 	CRITICAL_SECTION mSync;
 };
 
-class Lock
+class CriticalLock
 {
 private:
 	CriticalSection* cs;
-	explicit Lock():cs(nullptr) {};
 public:
-	Lock(CriticalSection* critical) :cs(critical)
+	CriticalLock(CriticalSection* critical) :cs(critical)
 	{
 		cs->Enter();
 	}
 
-	~Lock()
+	~CriticalLock()
 	{
 		cs->Leave();
 	}
