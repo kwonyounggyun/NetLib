@@ -12,4 +12,8 @@ private:
 	};
 
 	std::queue<MsgBuffer*> m_write_msg_queue;
+
+	// Session을(를) 통해 상속됨
+	virtual BOOL WirteComplete() override;
+	virtual BOOL Read(BYTE* data, DWORD data_length) override;
 };

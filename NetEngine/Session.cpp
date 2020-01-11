@@ -4,8 +4,8 @@
 Session::Session()
 {
 	ZeroMemory(m_read_buf, MAX_BUF);
-	wsa_buf_.buf = m_read_buf;
-	wsa_buf_.len = MAX_BUF;
+	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.len = MAX_BUF;
 
 	accept_overlapped.object = this;
 	accept_overlapped.type = IO_TYPE::IO_ACCEPT;
@@ -33,10 +33,10 @@ BOOL Session::InitializeIOCP()
 	DWORD recv_byte = 0;
 	DWORD recv_flag = 0;
 	ZeroMemory(m_read_buf, MAX_BUF);
-	wsa_buf_.buf = m_read_buf;
-	wsa_buf_.len = MAX_BUF;
+	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.len = MAX_BUF;
 
-	INT return_value = WSARecv(m_socket, &wsa_buf_, 1, &recv_byte, &recv_flag, &read_overlapped.overlap, NULL);   // 미리 한번 호출해줘야한다.
+	INT return_value = WSARecv(m_socket, &m_wsa_read, 1, &recv_byte, &recv_flag, &read_overlapped.overlap, NULL);   // 미리 한번 호출해줘야한다.
 	if (return_value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
 	{
 		End();
@@ -113,8 +113,8 @@ BOOL Session::Accept(SOCKET listen_socket)
 		return FALSE;
 
 	DWORD recv = 0;
-	wsa_buf_.buf = m_read_buf;
-	wsa_buf_.len = MAX_BUF;
+	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.len = MAX_BUF;
 
 	m_socket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
 
@@ -124,7 +124,7 @@ BOOL Session::Accept(SOCKET listen_socket)
 	BOOL no_delay = TRUE;
 	setsockopt(m_socket, IPPROTO_TCP, TCP_NODELAY, (const char*)&no_delay, sizeof(no_delay));
 
-	if (!AcceptEx(listen_socket, m_socket, wsa_buf_.buf, 0, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, &recv, &accept_overlapped.overlap))
+	if (!AcceptEx(listen_socket, m_socket, m_wsa_read.buf, 0, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, &recv, &accept_overlapped.overlap))
 	{
 		if (WSAGetLastError() != ERROR_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
 		{
@@ -177,10 +177,10 @@ BOOL Session::Write(BYTE* data, DWORD data_length)
 	DWORD write_byte = 0;
 	DWORD write_flag = 0;
 	WSABUF wsa_buf;
-	wsa_buf.buf = (CHAR*) data;
-	wsa_buf.len = data_length;
+	m_wsa_write.buf = (CHAR*) data;
+	m_wsa_write.len = data_length;
 
-	INT return_value = WSASend(m_socket, &wsa_buf, 1, &write_byte, write_flag, &write_overlapped.overlap, NULL);
+	INT return_value = WSASend(m_socket, &m_wsa_write, 1, &write_byte, write_flag, &write_overlapped.overlap, NULL);
 
 	if (return_value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
 	{
@@ -196,8 +196,11 @@ BOOL Session::Begin()
 		return FALSE;
 
 	ZeroMemory(m_read_buf, MAX_BUF);
-	wsa_buf_.buf = m_read_buf;
-	wsa_buf_.len = MAX_BUF;
+	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.len = MAX_BUF;
+
+	m_wsa_write.buf = nullptr;
+	m_wsa_write.len = 0;
 
 	return TRUE;
 }
@@ -215,10 +218,9 @@ BOOL Session::End()
 	return TRUE;
 }
 
+/*읽기 버퍼로 부터 읽어오는 역할만 합니다.*/
 BOOL Session::ReadForIOCP(BYTE* data, DWORD& data_length)
 {
-	CriticalLock lock(&m_critical);
-
 	if (!m_socket)
 		return FALSE;
 

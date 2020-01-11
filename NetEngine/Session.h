@@ -15,7 +15,7 @@ protected:
 	CriticalSection m_critical;
 
 	SOCKET m_socket;
-	WSABUF wsa_buf_;
+	WSABUF m_wsa_read, m_wsa_write;
 	CHAR m_read_buf[MAX_BUF];
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
 

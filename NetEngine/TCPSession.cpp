@@ -62,3 +62,25 @@ BOOL TCPSession::WirteComplete()
 {
 	return 0;
 }
+
+BOOL TCPSession::Read(BYTE* data, DWORD data_length)
+{
+	if (ReadForIOCP(data, data_length) == FALSE)
+		return FALSE;
+
+	DWORD recv_flag = 0;
+	DWORD recv_byte = 0;
+
+	INT value = WSARecv(m_socket, &m_wsa_read, 1, &recv_byte, &recv_flag, &read_overlapped.overlap, NULL);
+	if (value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL TCPSession::WirteComplete()
+{
+	return 0;
+}
