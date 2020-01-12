@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "MemoryPool.h"
 
 #define MAX_BUF 4096
 
@@ -28,4 +29,9 @@ enum class SESSION_TYPE :BYTE
 {
 	TCP,
 	UDP
+};
+
+struct MessageBuf:CMemoryPool<MessageBuf, 2000>
+{
+	CHAR buf[MAX_BUF];
 };

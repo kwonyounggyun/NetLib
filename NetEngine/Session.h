@@ -4,19 +4,24 @@
 #include "MultiThreadSync.h"
 #include "CircularQueue.h"
 #include "MultiThreadSync.h"
+#include "Define.h"
 
 #ifndef MAX_BUF
 #define MAX_BUF 4096
 #endif
 
+
 class Session
 {
 protected:
+	const static USHORT MAX_BUF_INDEX = 2;
+
 	CriticalSection m_critical;
 
 	SOCKET m_socket;
 	WSABUF m_wsa_read, m_wsa_write;
-	CHAR m_read_buf[MAX_BUF];
+	CHAR m_read_buf[MAX_BUF_INDEX][MAX_BUF];
+	USHORT m_buf_index;
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
 
 protected:
@@ -40,7 +45,7 @@ protected:
 	BOOL InitailizeIOCPUDP();
 
 	virtual BOOL WirteComplete() = 0;
-	virtual BOOL Read(BYTE* data, DWORD data_length) = 0;
+	virtual BOOL Read(DWORD data_length) = 0;
 	virtual BOOL Write(BYTE* data, DWORD data_length) = 0;
 
 	

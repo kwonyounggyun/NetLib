@@ -15,5 +15,7 @@ private:
 
 	// Session을(를) 통해 상속됨
 	virtual BOOL WirteComplete() override;
-	virtual BOOL Read(BYTE* data, DWORD data_length) override;
+	virtual BOOL Read(DWORD data_length) override;
+
+	BOOL GetPacket(CHAR* buf, DWORD data_length);
 };

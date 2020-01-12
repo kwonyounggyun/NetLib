@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Session.h"
 
-Session::Session()
+Session::Session() : m_buf_index(0)
 {
 	ZeroMemory(m_read_buf, MAX_BUF);
-	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.buf = m_read_buf[m_buf_index];
 	m_wsa_read.len = MAX_BUF;
 
 	accept_overlapped.object = this;
@@ -33,7 +33,7 @@ BOOL Session::InitializeIOCP()
 	DWORD recv_byte = 0;
 	DWORD recv_flag = 0;
 	ZeroMemory(m_read_buf, MAX_BUF);
-	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.buf = m_read_buf[m_buf_index];
 	m_wsa_read.len = MAX_BUF;
 
 	INT return_value = WSARecv(m_socket, &m_wsa_read, 1, &recv_byte, &recv_flag, &read_overlapped.overlap, NULL);   // 미리 한번 호출해줘야한다.
@@ -113,7 +113,7 @@ BOOL Session::Accept(SOCKET listen_socket)
 		return FALSE;
 
 	DWORD recv = 0;
-	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.buf = m_read_buf[m_buf_index];
 	m_wsa_read.len = MAX_BUF;
 
 	m_socket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
@@ -196,7 +196,7 @@ BOOL Session::Begin()
 		return FALSE;
 
 	ZeroMemory(m_read_buf, MAX_BUF);
-	m_wsa_read.buf = m_read_buf;
+	m_wsa_read.buf = m_read_buf[m_buf_index];
 	m_wsa_read.len = MAX_BUF;
 
 	m_wsa_write.buf = nullptr;

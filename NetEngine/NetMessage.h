@@ -4,21 +4,28 @@
 #include "MemoryPool.h"
 #include <string>
 
-class NetMessage:CMemoryPool<NetMessage, 1000>
+class NetMessage
 {
-public:
-	
-	static const DWORD HEADER = sizeof(USHORT);
-	static const DWORD MSG_BUF_SIZE = 4096 - HEADER;
 private:
 	USHORT m_size;
-	BYTE m_buf[MSG_BUF_SIZE];
+	BYTE m_buf[MAX_BUF];
 	USHORT m_readPos;
 	USHORT m_writePos;
+	
+public:
+	NetMessage() :m_size(sizeof(m_size)), m_readPos(0), m_writePos(sizeof(m_size))
+	{
+		ZeroMemory(m_buf, MAX_BUF);
+	}
+
+	NetMessage(VOID* buf, USHORT size) :m_size(size)
+	{
+		WriteByte(buf, size);
+	}
 
 	VOID WriteByte(VOID* data, DWORD len)
 	{
-		if ((MSG_BUF_SIZE - m_writePos) < len)
+		if ((MAX_BUF - m_writePos) < len)
 			return;
 
 		CopyMemory(m_buf + m_writePos, data, len);
@@ -33,24 +40,24 @@ private:
 		CopyMemory(data, m_buf + m_readPos, len);
 		m_readPos += len;
 	}
-	
-public:
-	explicit NetMessage() :m_size(0), m_readPos(0), m_writePos(0)
-	{
-		ZeroMemory(m_buf, MSG_BUF_SIZE);
-	}
-
-	NetMessage(VOID* buf, USHORT size) :m_size(size)
-	{
-		WriteByte(buf, size);
-	}
 
 	BOOL BufferClear()
 	{
-		m_size = 0;
+		m_size = sizeof(m_size);
 		m_readPos = 0;
-		m_writePos = 0;
-		ZeroMemory(m_buf, MSG_BUF_SIZE);
+		m_writePos = sizeof(m_size);
+		ZeroMemory(m_buf, MAX_BUF);
+	}
+
+	BYTE* GetBuffer()
+	{
+		CopyMemory(m_buf, &m_size, sizeof(m_size));
+		return m_buf;
+	}
+
+	USHORT GetSize()
+	{
+		return m_size;
 	}
 
 	template<typename T>
