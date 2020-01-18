@@ -1,18 +1,19 @@
 #pragma once
 #include "stdafx.h"
+#include "MultiThreadSync.h"
 
 #define MAX_QUEUE_LENGTH 1024
 
 template <class T>
-class CCircularQueue
+class CircularQueue
 {
 public:
-	CCircularQueue()
+	CircularQueue()
 	{
 		ZeroMemory(mQueue, sizeof(mQueue));
 		mQueueHead = mQueueTail = 0;
 	}
-	~CCircularQueue() {}
+	~CircularQueue() {}
 
 private:
 	T mQueue[MAX_QUEUE_LENGTH];
@@ -61,3 +62,66 @@ public:
 	}
 };
 
+template <class T>
+class ConcerrentCircularQueue
+{
+public:
+	ConcerrentCircularQueue()
+	{
+		ZeroMemory(mQueue, sizeof(mQueue));
+		mQueueHead = mQueueTail = 0;
+	}
+	~ConcerrentCircularQueue() {}
+
+private:
+	CriticalSection critical_section;
+	T mQueue[MAX_QUEUE_LENGTH];
+	DWORD mQueueHead;
+	DWORD mQueueTail;
+
+public:
+	BOOL Begin(VOID)
+	{
+		CriticalLock lock(&critical_section);
+		ZeroMemory(mQueue, sizeof(mQueue));
+		mQueueHead = mQueueTail = 0;
+
+		return TRUE;
+	}
+
+	BOOL End() { return TRUE; }
+
+	BOOL Push(T data)
+	{
+		CriticalLock lock(&critical_section);
+
+		DWORD TempTail = (mQueueTail + 1) % MAX_QUEUE_LENGTH;
+		if (TempTail == mQueueHead)
+			return FALSE;
+
+		CopyMemory(&mQueue[TempTail], &data, sizeof(T));
+
+		mQueueTail = TempTail;
+		return TRUE;
+	}
+
+	BOOL Pop(T& data)
+	{
+		CriticalLock lock(&critical_section);
+
+		if (mQueueHead == mQueueTail)
+			return FALSE;
+
+		DWORD TempHead = (mQueueHead + 1) % MAX_QUEUE_LENGTH;
+
+		CopyMemory(&data, &mQueue[TempHead], sizeof(T));
+		mQueueHead = TempHead;
+		return TRUE;
+	}
+
+	BOOL IsEmpty()
+	{
+		if (mQueueHead == mQueueTail) return TRUE;
+		return FALSE;
+	}
+};

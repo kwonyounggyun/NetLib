@@ -5,6 +5,7 @@
 #include "CircularQueue.h"
 #include "MultiThreadSync.h"
 #include "Define.h"
+#include "TaskManager.h"
 
 #ifndef MAX_BUF
 #define MAX_BUF 4096
@@ -13,23 +14,21 @@
 
 class Session
 {
-protected:
-	const static USHORT MAX_BUF_INDEX = 2;
+private:
 
 	CriticalSection m_critical;
 
 	SOCKET m_socket;
 	WSABUF m_wsa_read, m_wsa_write;
-	CHAR m_read_buf[MAX_BUF_INDEX][MAX_BUF];
-	USHORT m_buf_index;
+	CHAR m_read_buf[MAX_BUF];
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
 
 protected:
 	Session();
 	virtual ~Session();
 
-	BOOL Begin();
-	BOOL End();
+	virtual BOOL Begin();
+	virtual BOOL End();
 
 	//TCP
 	BOOL InitializeIOCP();
@@ -37,16 +36,18 @@ protected:
 	BOOL Listen(USHORT port, INT back_log);
 	BOOL Accept(SOCKET listen_socket);
 	BOOL Connect(LPSTR address, USHORT port);
-	BOOL Write(BYTE* data, DWORD data_length);
-	BOOL ReadForIOCP(BYTE* data, DWORD& data_length);
+	BOOL WriteTCP(VOID* data, DWORD data_length);
+	BOOL ReadTCP();
+	BOOL ReadForIOCP(BYTE* data, DWORD data_length, DWORD recv_offset, DWORD total_recv_length);
 
 	//UDP
 	BOOL InitailizeUDP();
 	BOOL InitailizeIOCPUDP();
+	BOOL WriteUDP(BYTE* data, DWORD data_length, SOCKADDR* addr);
+	BOOL ReadUDP(SOCKADDR* addr);
 
 	virtual BOOL WirteComplete() = 0;
 	virtual BOOL Read(DWORD data_length) = 0;
-	virtual BOOL Write(BYTE* data, DWORD data_length) = 0;
 
 	
 	const SOCKET& Socket()

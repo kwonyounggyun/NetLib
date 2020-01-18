@@ -1,6 +1,5 @@
 #pragma once
 #include "Session.h"
-#include <queue>
 
 class TCPSession : Session
 {
@@ -11,11 +10,16 @@ private:
 		BYTE buf[MAX_BUF];
 	};
 
-	std::queue<MsgBuffer*> m_write_msg_queue;
+	BYTE m_tcp_buffer[MAX_BUF];
+	NetMessage* remain_msg;
+	USHORT remain_size;
+	USHORT m_tcp_buf_write_pos;
+	CCircularQueue<NetMessage*> m_write_msg_queue;
 
 	// Session을(를) 통해 상속됨
 	virtual BOOL WirteComplete() override;
 	virtual BOOL Read(DWORD data_length) override;
 
-	BOOL GetPacket(CHAR* buf, DWORD data_length);
+	BOOL GetPacket(BYTE* buf, DWORD data_length, USHORT& remain_pos);
+	BOOL Write(NetMessage* msg);
 };

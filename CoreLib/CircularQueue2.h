@@ -1,5 +1,6 @@
 #pragma once
 #include "MultiThreadSync.h"
+#include "CircularQueue.h"
 
 template <typename T>
 class CCircularQueue2 : public CMultiThreadSync<CCircularQueue2<T>>
@@ -10,7 +11,7 @@ public:
 		ZeroMemory(mQueue, sizeof(mQueue));
 		mQueueHead = mQueueTail = 0;
 	}
-	~CircularQueue2(VOID) {}
+	~CCircularQueue2(VOID) {}
 
 private:
 	T mQueue[MAX_QUEUE_LENGTH];
@@ -21,16 +22,16 @@ public:
 	BOOL Begin(VOID)
 	{
 		ZeroMemory(mQueue, sizeof(mQueue));
-		mQeueue = mQueueTail = 0;
+		mQueueHead = mQueueTail = 0;
 
 		return TRUE;
 	}
 
 	BOOL End(VOID) { return TRUE; }
 
-	BOOL PUSH(T data)
+	BOOL Push(T data)
 	{
-		CThreadSync sync;
+		typename CThreadSync sync;
 
 		DWORD TempTail = (mQueueTail + 1) % MAX_QUEUE_LENGTH;
 
@@ -46,14 +47,13 @@ public:
 
 	BOOL Pop(T& data)
 	{
-		CThreadSync sync;
-
-		if (mQueueHead == mQeueTail)
+		typename CThreadSync sync;
+		if (mQueueHead == mQueueTail)
 			return FALSE;
 
-		DWORD DWORD TempHead = (mQueueHead + 1) % MAX_QUEUE_LENGTH;
+		DWORD TempHead = (mQueueHead + 1) % MAX_QUEUE_LENGTH;
 
-		CopyMemory(data, mQueue[TempHead], sieof(T));
+		CopyMemory(data, mQueue[TempHead], sizeof(T));
 
 		mQueueHead = TempHead;
 
@@ -62,9 +62,9 @@ public:
 
 	BOOL IsEmpty(VOID)
 	{
-		CThreadSync sync;
+		typename CThreadSync sync;
 
-		if (mQueuehead == mQueueTail) return TRUE;
+		if (mQueueHead == mQueueTail) return TRUE;
 
 		return FALSE;
 	}

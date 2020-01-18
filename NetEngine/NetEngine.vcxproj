@@ -166,6 +166,7 @@
     <ClInclude Include="NetMessage.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Session.h" />
+    <ClInclude Include="TaskManager.h" />
     <ClInclude Include="TCPSession.h" />
     <ClInclude Include="UDPSession.h" />
   </ItemGroup>
@@ -180,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Session.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="TCPSession.cpp" />
     <ClCompile Include="UDPSession.cpp" />
   </ItemGroup>

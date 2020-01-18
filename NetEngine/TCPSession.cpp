@@ -1,37 +1,6 @@
 #include "pch.h"
 #include "TCPSession.h"
 
-BOOL TCPSession::Accept(SOCKET listen_sock)
-{
-	if (!listen_sock)
-		return FALSE;
-
-	if (socket_ != NULL)
-		return FALSE;
-
-	socket_ = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
-
-	if (socket_ == INVALID_SOCKET)
-		return FALSE;
-
-	BOOL no_delay = TRUE;
-	setsockopt(socket_, IPPROTO_TCP, TCP_NODELAY, (const char*)&no_delay, sizeof(no_delay));
-
-	DWORD recv;
-	//이거 때문에 헷갈렷다. acceptex는 완료 통보를 listen_sock에다가 하는거다...
-	if (!AcceptEx(listen_sock, socket_, buf_, 0, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, &recv, &accept_overlapped.overlap))
-	{
-		if (WSAGetLastError() != ERROR_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
-		{
-			End();
-
-			return FALSE;
-		}
-	}
-
-	return TRUE;
-}
-
 BOOL TCPSession::Read(DWORD data_length)
 {
 	if (data_length <= 0)
@@ -39,60 +8,102 @@ BOOL TCPSession::Read(DWORD data_length)
 
 	DWORD recv_byte = 0;
 	DWORD recv_flag = 0;
+	DWORD recv_offset = 0;
 
-	//여기서 패킷 분리
-	GetPacket(m_read_buf[m_buf_index], data_length);
-
-	m_buf_index = (m_buf_index + 1) % MAX_BUF_INDEX;
-
-	m_wsa_read.buf = m_read_buf[m_buf_index];;
-	m_wsa_read.len = MAX_BUF;
-
-	INT value = WSARecv(m_socket, &m_wsa_read, 1, &recv_byte, &recv_flag, &read_overlapped.overlap, NULL);
-	if (value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
+	//여기서 패킷 분리 굳이 이렇게 할게 아니라 그냥 read버퍼를 사용하는게 복사 비용도안들고 좋긴하다.
+	while (ReadForIOCP(m_tcp_buffer + m_tcp_buf_write_pos, MAX_BUF - m_tcp_buf_write_pos, recv_offset, data_length))
 	{
-		End();
+		if (GetPacket(m_tcp_buffer, data_length, m_tcp_buf_write_pos) == FALSE)
+		{
+			End();
 
-		return FALSE;
+			return FALSE;
+		}
 	}
 
-	return TRUE;
+	Session::ReadTCP();
 }
 
-BOOL TCPSession::GetPacket(CHAR* buf, DWORD data_length)
+/*
+FALSE가 반환되면 잘못된 패킷 들어온건데 잘못된 패킷이 들어온 순간 READ쪽에서 세션을 종료해버린다.
+*/
+BOOL TCPSession::GetPacket(BYTE* buf, DWORD data_length, USHORT& remain_pos)
 {
 	USHORT length = 0;
-	DWORD index = 0;
+	BYTE* buf_read_pos = buf;
 	USHORT remain_length = data_length;
 	USHORT length_size = sizeof(length);
+	//1바이트만 들어오는 경우도 잇지않을까? 네크워크가 떡된경우
 
-	while (remain_length >= length_size) //메세지 분리하기위한 최소조건
+	while (remain_length > 0)
 	{
-		CopyMemory(&length, buf->buf + index, sizeof(length_size));
-		NetMessage* msg = new NetMessage();
-		
+		if (remain_msg != nullptr)
+		{
+			/*
+			remain이 남는 경우는 GetPacket이 종료되었을때만 남는다. 다음번 데이터가 들어오면 무조건 remain이 완성된다.
+			왜냐면 iocp는 내가 지정한 버퍼만큼 읽으며 tcp통신이 완료되었을때 신호를 완료신호를 보낸다. 나는 버퍼 크기를 지정하고 해당 버퍼보다 큰 데이터를 보내지 않을 것이다.
+			그래서 다음번 이벤트가 발생하면 무조건 패킷이 완성된다.
+			*/
+			remain_msg->WriteByte(buf_read_pos, remain_size);
+			TaskManager::GetInstance().PushMsg(remain_msg);
+			remain_msg = nullptr;
+			remain_length -= remain_size;
+			remain_size = 0;
+			continue;
+		}
+
+		if (remain_length < length_size)
+		{
+			//데이터 앞으로 당기기
+			CopyMemory(buf, buf_read_pos, remain_length);
+			remain_pos = remain_length;
+			break;
+		}
+		remain_pos = 0;
+
+		CopyMemory(&length, buf_read_pos, length_size);
+		remain_length -= length_size;
+		buf_read_pos += length_size;
+
 		if (length <= 0 || length > MAX_BUF)
-			break;
+			return FALSE;
 
+		NetMessage* msg = NetMessage::NewMsg();
 		if (remain_length < length)
+		{
+			msg->WriteByte(buf_read_pos, remain_length);
+			remain_msg = msg;
+			remain_size = length - remain_length;
 			break;
+		}
+		else
+		{
+			msg->WriteByte(buf_read_pos, length);
+			TaskManager::GetInstance().PushMsg(msg);
+		}
 
-		msg->WriteByte(buf->buf + index, length);
-		//만들어진 메세지 작업 큐에 넣음
-
+		buf_read_pos += length;
+		remain_length -= length;
 	}
+
 	return TRUE;
 }
 
-BOOL TCPSession::Write(BYTE* packet, DWORD length)
-{
-	MsgBuffer* msg_buffer = new MsgBuffer();
-	
-	CopyMemory(&msg_buffer->buf, packet, length);
+BOOL TCPSession::Write(NetMessage* msg)
+{	
+	WriteTCP(msg, msg->GetSize());
 
-	return TRUE;
+	m_write_msg_queue.Push(msg);
 }
 
 BOOL TCPSession::WirteComplete()
 {
-	return 0;
+	NetMessage* msg;
+
+	if (m_write_msg_queue.Pop(msg))
+		return FALSE;
+
+	delete msg;
+
+	return TRUE;
+}

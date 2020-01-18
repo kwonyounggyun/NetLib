@@ -7,12 +7,12 @@
 class NetMessage
 {
 private:
+
 	USHORT m_size;
 	BYTE m_buf[MAX_BUF];
 	USHORT m_readPos;
 	USHORT m_writePos;
 	
-public:
 	NetMessage() :m_size(sizeof(m_size)), m_readPos(0), m_writePos(sizeof(m_size))
 	{
 		ZeroMemory(m_buf, MAX_BUF);
@@ -23,7 +23,15 @@ public:
 		WriteByte(buf, size);
 	}
 
-	VOID WriteByte(VOID* data, DWORD len)
+	NetMessage(NetMessage&);
+
+public:
+	static NetMessage* NewMsg()
+	{
+		return new NetMessage();
+	}
+
+	VOID WriteByte(VOID* data, USHORT len)
 	{
 		if ((MAX_BUF - m_writePos) < len)
 			return;
@@ -32,7 +40,7 @@ public:
 		m_writePos += len;
 	}
 
-	VOID ReadByte(VOID* data, DWORD len)
+	VOID ReadByte(VOID* data, USHORT len)
 	{
 		if ((m_size - m_readPos) < len)
 			return;
