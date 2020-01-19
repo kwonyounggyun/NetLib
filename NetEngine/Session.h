@@ -19,7 +19,7 @@ private:
 	CriticalSection m_critical;
 
 	SOCKET m_socket;
-	WSABUF m_wsa_read, m_wsa_write;
+	WSABUF m_wsa_read;
 	CHAR m_read_buf[MAX_BUF];
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
 
@@ -35,7 +35,7 @@ protected:
 	BOOL TcpBind();
 	BOOL Listen(USHORT port, INT back_log);
 	BOOL Accept(SOCKET listen_socket);
-	BOOL Connect(LPSTR address, USHORT port);
+	BOOL Connect(LPWSTR address, USHORT port);
 	BOOL WriteTCP(VOID* data, DWORD data_length);
 	BOOL ReadTCP();
 	BOOL ReadForIOCP(BYTE* data, DWORD data_length, DWORD recv_offset, DWORD total_recv_length);

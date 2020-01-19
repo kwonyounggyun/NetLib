@@ -21,7 +21,7 @@ BOOL TCPSession::Read(DWORD data_length)
 		}
 	}
 
-	Session::ReadTCP();
+	return Session::ReadTCP();
 }
 
 /*
@@ -94,6 +94,8 @@ BOOL TCPSession::Write(NetMessage* msg)
 	WriteTCP(msg, msg->GetSize());
 
 	m_write_msg_queue.Push(msg);
+
+	return TRUE;
 }
 
 BOOL TCPSession::WirteComplete()

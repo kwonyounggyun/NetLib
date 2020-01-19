@@ -1,11 +1,11 @@
 #pragma once
-#include "CircularQueue2.h"
+#include "CircularQueue.h"
 #include "NetMessage.h"
 
 class TaskManager
 {
 private:
-	CCircularQueue2<NetMessage*> msg_queue;
+	ConcerrentCircularQueue<NetMessage*> msg_queue;
 	
 	TaskManager() {}
 
@@ -19,12 +19,12 @@ public:
 
 	BOOL PushMsg(NetMessage* msg)
 	{
-		msg_queue.Push(msg);
+		return msg_queue.Push(msg);
 	}
 
 	BOOL PopMsg(NetMessage* msg)
 	{
-		msg_queue.Pop(msg);
+		return msg_queue.Pop(msg);
 	}
 };
 

@@ -24,17 +24,18 @@ VOID IOCP::RunThread()
 	{
 		BOOL result = GetQueuedCompletionStatus(h_cp_, &transferred_bytes, &completion_key, (LPOVERLAPPED*) &overlapped, INFINITE);
 
+		Session* session = reinterpret_cast<Session*>(overlapped->object);
 		if (!result || (result && !transferred_bytes))
 		{
 			if (overlapped->type == IO_TYPE::IO_ACCEPT)
-				OnConnect();
+				OnConnect(session);
 			else
-				OnDisconnect();
+				OnDisconnect(session);
 
 			continue;
 		}
 
-		Session* session = reinterpret_cast<Session*>(overlapped->object);
+		
 		switch (overlapped->type)
 		{
 		case IO_TYPE::IO_READ:
@@ -44,7 +45,7 @@ VOID IOCP::RunThread()
 			OnWrite(session);
 			break;
 		default:
-			OnDisconnect();
+			OnDisconnect(session);
 			break;
 		}
 	}
@@ -52,26 +53,26 @@ VOID IOCP::RunThread()
 	return VOID();
 }
 
-BOOL IOCP::OnConnect()
+BOOL IOCP::OnConnect(Session* session)
 {
 	return 0;
 }
 
-BOOL IOCP::OnDisconnect()
+BOOL IOCP::OnDisconnect(Session* session)
 {
 	return 0;
 }
 
 BOOL IOCP::OnWrite(Session* session)
 {
-	session->WirteComplete();
+	//session->WirteComplete();
 
 	return 0;
 }
 
 BOOL IOCP::OnRead(Session* session)
 {
-	session->Read();
+	//session->Read();
 
 	return 0;
 }
@@ -145,7 +146,7 @@ BOOL IOCP::End()
 
 BOOL IOCP::RegisterHandleToIOCP(HANDLE handle, DWORD completionkey)
 {
-	if (!socket || !completionkey)
+	if (!handle || !completionkey)
 		return FALSE;
 
 	h_cp_ = CreateIoCompletionPort(handle, h_cp_, completionkey, 0);

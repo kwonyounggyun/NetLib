@@ -63,65 +63,41 @@ public:
 };
 
 template <class T>
-class ConcerrentCircularQueue
+class ConcerrentCircularQueue:CircularQueue<T>
 {
 public:
-	ConcerrentCircularQueue()
-	{
-		ZeroMemory(mQueue, sizeof(mQueue));
-		mQueueHead = mQueueTail = 0;
-	}
+	ConcerrentCircularQueue() {}
 	~ConcerrentCircularQueue() {}
 
 private:
 	CriticalSection critical_section;
-	T mQueue[MAX_QUEUE_LENGTH];
-	DWORD mQueueHead;
-	DWORD mQueueTail;
 
 public:
 	BOOL Begin(VOID)
 	{
 		CriticalLock lock(&critical_section);
-		ZeroMemory(mQueue, sizeof(mQueue));
-		mQueueHead = mQueueTail = 0;
 
-		return TRUE;
+		return CircularQueue<T>::Begin();
 	}
 
-	BOOL End() { return TRUE; }
+	BOOL End() { return CircularQueue<T>::End(); }
 
 	BOOL Push(T data)
 	{
 		CriticalLock lock(&critical_section);
 
-		DWORD TempTail = (mQueueTail + 1) % MAX_QUEUE_LENGTH;
-		if (TempTail == mQueueHead)
-			return FALSE;
-
-		CopyMemory(&mQueue[TempTail], &data, sizeof(T));
-
-		mQueueTail = TempTail;
-		return TRUE;
+		return CircularQueue<T>::Push(data);
 	}
 
 	BOOL Pop(T& data)
 	{
 		CriticalLock lock(&critical_section);
 
-		if (mQueueHead == mQueueTail)
-			return FALSE;
-
-		DWORD TempHead = (mQueueHead + 1) % MAX_QUEUE_LENGTH;
-
-		CopyMemory(&data, &mQueue[TempHead], sizeof(T));
-		mQueueHead = TempHead;
-		return TRUE;
+		return CircularQueue<T>::Pop(data);
 	}
 
 	BOOL IsEmpty()
 	{
-		if (mQueueHead == mQueueTail) return TRUE;
-		return FALSE;
+		return CircularQueue<T>::IsEmpty();
 	}
 };

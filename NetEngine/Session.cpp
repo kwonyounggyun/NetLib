@@ -137,7 +137,7 @@ BOOL Session::Accept(SOCKET listen_socket)
 	return TRUE;
 }
 
-BOOL Session::Connect(LPSTR address, USHORT port)
+BOOL Session::Connect(LPWSTR address, USHORT port)
 {
 	CriticalLock lock(&m_critical);
 
@@ -149,8 +149,8 @@ BOOL Session::Connect(LPSTR address, USHORT port)
 
 	SOCKADDR_IN remote_address_info;
 	remote_address_info.sin_family = AF_INET;
-	remote_address_info.sin_addr.S_un.S_addr = inet_addr(address);
 	remote_address_info.sin_port = htons(port);
+	InetPton(AF_INET, address, &remote_address_info.sin_addr);
 
 	if (WSAConnect(m_socket, (SOCKADDR*)&remote_address_info, sizeof(SOCKADDR_IN), NULL, NULL, NULL, NULL) == SOCKET_ERROR)
 	{
@@ -197,10 +197,10 @@ BOOL Session::WriteTCP(VOID* data, DWORD data_length)
 	DWORD write_byte = 0;
 	DWORD write_flag = 0;
 	WSABUF wsa_buf;
-	m_wsa_write.buf = (CHAR*) data;
-	m_wsa_write.len = data_length;
+	wsa_buf.buf = (CHAR*) data;
+	wsa_buf.len = data_length;
 
-	INT return_value = WSASend(m_socket, &m_wsa_write, 1, &write_byte, write_flag, &write_overlapped.overlap, NULL);
+	INT return_value = WSASend(m_socket, &wsa_buf, 1, &write_byte, write_flag, &write_overlapped.overlap, NULL);
 
 	if (return_value == SOCKET_ERROR && WSAGetLastError() != WSA_IO_PENDING && WSAGetLastError() != WSAEWOULDBLOCK)
 	{
@@ -218,9 +218,6 @@ BOOL Session::Begin()
 	ZeroMemory(m_read_buf, MAX_BUF);
 	m_wsa_read.buf = m_read_buf;
 	m_wsa_read.len = MAX_BUF;
-
-	m_wsa_write.buf = nullptr;
-	m_wsa_write.len = 0;
 
 	return TRUE;
 }

@@ -159,7 +159,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SessionBaseServer.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Iocp.h" />
@@ -171,7 +170,6 @@
     <ClInclude Include="UDPSession.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SessionBaseServer.cpp" />
     <ClCompile Include="Iocp.cpp" />
     <ClCompile Include="NetEngine.cpp" />
     <ClCompile Include="pch.cpp">

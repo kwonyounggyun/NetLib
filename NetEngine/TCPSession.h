@@ -14,7 +14,7 @@ private:
 	NetMessage* remain_msg;
 	USHORT remain_size;
 	USHORT m_tcp_buf_write_pos;
-	CCircularQueue<NetMessage*> m_write_msg_queue;
+	CircularQueue<NetMessage*> m_write_msg_queue;
 
 	// Session을(를) 통해 상속됨
 	virtual BOOL WirteComplete() override;
