@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Session">
+      <UniqueIdentifier>{c5b4d4c0-9943-4192-88ce-267821444afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{ab518bc4-f330-42f4-b9b5-75d46aee6836}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -22,9 +28,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Iocp.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Session.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
@@ -37,13 +40,19 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="TCPSession.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Session</Filter>
     </ClInclude>
     <ClInclude Include="UDPSession.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Session</Filter>
     </ClInclude>
     <ClInclude Include="TaskManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,16 +66,19 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Session.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Session</Filter>
     </ClCompile>
     <ClCompile Include="TCPSession.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Session</Filter>
     </ClCompile>
     <ClCompile Include="UDPSession.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Session</Filter>
     </ClCompile>
     <ClCompile Include="TaskManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

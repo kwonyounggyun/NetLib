@@ -15,20 +15,25 @@
 class Session
 {
 private:
-
 	CriticalSection m_critical;
 
 	SOCKET m_socket;
 	WSABUF m_wsa_read;
 	CHAR m_read_buf[MAX_BUF];
 	OVERLAPPED_EX accept_overlapped, read_overlapped, write_overlapped;
+	
+	SESSION_ID id;
+
+private:
+	static SESSION_ID AllocateSessionID()
+	{
+		static SESSION_ID session_id = 0;
+		return session_id++;
+	}
 
 protected:
 	Session();
 	virtual ~Session();
-
-	virtual BOOL Begin();
-	virtual BOOL End();
 
 	//TCP
 	BOOL InitializeIOCP();
@@ -49,10 +54,18 @@ protected:
 	virtual BOOL WirteComplete() = 0;
 	virtual BOOL Read(DWORD data_length) = 0;
 
-	
+public:
+	virtual BOOL Begin();
+	virtual BOOL End();
+
 	const SOCKET& Socket()
 	{
 		return m_socket;
+	}
+
+	const SESSION_ID ID()
+	{
+		return id;
 	}
 };
 

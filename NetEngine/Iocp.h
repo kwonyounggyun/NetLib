@@ -2,7 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include "NetMessage.h"
-#include <queue>
+#include <unordered_map>
 #include "Session.h"
 
 class IOCP
@@ -10,7 +10,7 @@ class IOCP
 private:
 	friend DWORD __stdcall ThreadCallback(VOID* param);
 
-	static std::queue<NetMessage*>  Messages;
+	std::unordered_map<SESSION_ID, Session*> connect_sessions;
 
 private:
 	IOCP& operator=(const IOCP&) {}  //복사대입거부

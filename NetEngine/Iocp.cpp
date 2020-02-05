@@ -55,11 +55,15 @@ VOID IOCP::RunThread()
 
 BOOL IOCP::OnConnect(Session* session)
 {
+	session->Begin();
+	connect_sessions.insert(std::make_pair(session->ID(), session));
 	return 0;
 }
 
 BOOL IOCP::OnDisconnect(Session* session)
 {
+	session->End();
+	connect_sessions.erase(session->ID());
 	return 0;
 }
 

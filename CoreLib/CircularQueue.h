@@ -63,11 +63,11 @@ public:
 };
 
 template <class T>
-class ConcerrentCircularQueue:CircularQueue<T>
+class ConcurrentCircularQueue:CircularQueue<T>
 {
 public:
-	ConcerrentCircularQueue() {}
-	~ConcerrentCircularQueue() {}
+	ConcurrentCircularQueue() {}
+	~ConcurrentCircularQueue() {}
 
 private:
 	CriticalSection critical_section;

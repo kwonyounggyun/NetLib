@@ -5,7 +5,7 @@
 class TaskManager
 {
 private:
-	ConcerrentCircularQueue<NetMessage*> msg_queue;
+	ConcurrentCircularQueue<NetMessage*> msg_queue;
 	
 	TaskManager() {}
 

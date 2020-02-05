@@ -3,6 +3,7 @@
 
 Session::Session()
 {
+	id = AllocateSessionID();
 	ZeroMemory(m_read_buf, MAX_BUF);
 	m_wsa_read.buf = m_read_buf;
 	m_wsa_read.len = MAX_BUF;

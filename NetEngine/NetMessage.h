@@ -13,7 +13,7 @@ private:
 	USHORT m_readPos;
 	USHORT m_writePos;
 	
-	NetMessage() :m_size(sizeof(m_size)), m_readPos(0), m_writePos(sizeof(m_size))
+	NetMessage() :m_size(sizeof(m_size)), m_readPos(sizeof(m_size)), m_writePos(sizeof(m_size))
 	{
 		ZeroMemory(m_buf, MAX_BUF);
 	}
@@ -72,28 +72,36 @@ public:
 	NetMessage& operator >>(T& arg)
 	{
 		ReadByte(&arg, sizeof(T));
-	}
-
-	template<>
-	NetMessage& operator >>(std::wstring& arg)
-	{
-		size_t size;
-		ReadByte(&size, sizeof(size_t));
-		arg.resize(size);
-		ReadByte((VOID*)arg.c_str(), size);
+		return *this;
 	}
 
 	template<typename T>
 	NetMessage& operator <<(const T& arg)
 	{
 		WriteByte(&arg, sizeof(T));
+		return *this;
 	}
 
-	template<>
-	NetMessage& operator <<(const std::wstring& arg)
-	{
-		size_t len = arg.length();
-		WriteByte(&len, sizeof(size_t));
-		WriteByte((VOID*)arg.c_str(), len);
-	}
+
 };
+
+template<>
+NetMessage& NetMessage::operator << <std::wstring> (const std::wstring& arg)
+{
+	size_t len = arg.length()*sizeof(wchar_t);
+	WriteByte(&len, sizeof(size_t));
+	m_size += sizeof(size_t);
+	WriteByte((VOID*)arg.c_str(), len);
+	m_size += len;
+	return *this;
+}
+
+template<>
+NetMessage& NetMessage::operator >> <std::wstring> (std::wstring& arg)
+{
+	size_t size;
+	ReadByte(&size, sizeof(size_t));
+	arg.resize(size);
+	ReadByte((VOID*)arg.c_str(), size);
+	return *this;
+}

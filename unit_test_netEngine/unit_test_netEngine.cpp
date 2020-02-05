@@ -5,17 +5,26 @@
 #include <Windows.h>
 #include <iostream>
 #include "NetMessage.h"
+#include "CircularQueue.h"
 
-class A
-{
-	friend class IOCP;
-public:
-
-};
-
+using namespace std;
 int main()
 {
-	NetMessage* msg = new NetMessage();
+	/*NetMessage* msg = NetMessage::NewMsg();
+	std::wstring s = L"test";
+	*msg << s;
+	cout << msg->GetSize() <<endl;
+	std::wstring str;
+	*msg >> str;
+	wprintf_s(str.c_str());*/
+
+	ConcurrentCircularQueue<int> queue;
+	queue.Push(1);
+	queue.Push(2);
+	int a;
+	queue.Pop(a);
+
+	cout << a << endl;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
